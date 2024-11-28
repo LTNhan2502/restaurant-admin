@@ -1,38 +1,39 @@
 import {Button, Col, Form, Input, notification, Row} from 'antd';
-import {loginAdmin} from "../utils/loginAPI.js";
+import {loginAdmin} from "../../utils/loginAPI.js";
 import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
-import {AuthContext} from "../components/library/admin.context.jsx";
+import {AuthContext} from "../../components/library/admin.context.jsx";
 
 const LoginPage = () => {
     const {setAuth} = useContext(AuthContext)
     const navigate = useNavigate()
 
     const onFinish = async (values) => {
-        const { email, password } = values;
-        // const res = await loginAdmin(email, password);
-        // if(res && res.EM === 0){
-        // localStorage.setItem("access_token", res.access_token);
-        if(values){
+        const { username, password } = values;
+        const res = await loginAdmin(username, password);
+        console.log(">>Check res",res)
+        if(res){
+            localStorage.setItem("access_token", res.data.data.access_token);
+            setAuth({
+                isAuthenticated: true,
+                user: {
+                    username: res.data.data.username,
+                }
+            })
+
             notification.success({
                 message: "Đăng nhập thành công",
-                description: "Chào mừng trở lại",
+                description: `Chào mừng trở lại, ${res.data.data.username}`,
                 duration: 2,
                 showProgress: true,
                 pauseOnHover: true,
             })
-            setAuth({
-                isAuthenticated: true,
-                user: {
-                    username: '',
-                    // username: res?.data?.username
-                }
-            })
+
             navigate('/')
         }else{
             notification.error({
                 message: "Đăng nhập thất bại",
-                description: "Error",
+                description: "Lỗi",
                 duration: 3.5,
                 showProgress: true,
                 pauseOnHover: true,

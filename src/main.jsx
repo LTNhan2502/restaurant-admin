@@ -6,11 +6,14 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
-import RegisterPage from "./pages/register.jsx";
-import ManageUsers from "./pages/users.jsx";
-import HomePage from "./pages/home.jsx";
-import LoginPage from "./pages/login.jsx";
+import RegisterPage from "./pages/auth/register.jsx";
+import ManageUsers from "./pages/users/users.jsx";
+import HomePage from "./pages/main/home.jsx";
+import LoginPage from "./pages/auth/login.jsx";
 import {AuthWrapper} from "./components/library/admin.context.jsx";
+import ManageHotPot from "./pages/products/hotpot.jsx";
+import ManageSpicyNoodles from "./pages/products/spicyNoodles.jsx";
+import ManageMaterials from "./pages/products/materials.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +23,21 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <HomePage />,
+            },
+
+            {
+                path: 'hot-pot',
+                element: <ManageHotPot />,
+            },
+
+            {
+                path: 'spicy-noodles',
+                element: <ManageSpicyNoodles />,
+            },
+
+            {
+                path: 'materials',
+                element: <ManageMaterials />,
             },
 
             {

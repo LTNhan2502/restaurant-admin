@@ -12,6 +12,8 @@ import { Button, Layout, Menu, theme } from 'antd';
 import {Outlet, useLocation, useNavigate} from 'react-router-dom';
 import {useContext, useState} from "react";
 import {AuthContext} from "./components/library/admin.context.jsx";
+import {GiFruitBowl, GiHotMeal, GiNoodles} from "react-icons/gi";
+import HeaderAvatar from "./pages/main/header.avatar.jsx";
 
 const { Header, Content, Footer, Sider } = Layout;
 const siderStyle = {
@@ -50,18 +52,27 @@ const App = () => {
                         {
                             key: "/",
                             icon: <DashboardOutlined/>,
-                            label: "Dashboard"
+                            label: "Bảng điều khiển"
                         },
                         {
-                            key: "2",
                             icon: <ProductOutlined/>,
-                            label: "Product",
+                            label: "Sản phẩm",
                             children: [
                                 {
-                                    key: "/products",
-                                    icon: <DownloadOutlined/>,
-                                    label: "Option 1",
-                                }
+                                    key: "/hot-pot",
+                                    icon: <GiHotMeal />,
+                                    label: "Lẩu",
+                                },
+                                {
+                                    key: "/spicy-noodles",
+                                    icon: <GiNoodles />,
+                                    label: "Mì cay",
+                                },
+                                {
+                                    key: "/materials",
+                                    icon: <GiFruitBowl />,
+                                    label: "Nguyên liệu",
+                                },
                             ]
                         },
                         {
@@ -89,6 +100,8 @@ const App = () => {
                 {/* Header */}
                 <Header
                     style={{
+                        display: 'flex',
+                        justifyContent: "space-between",
                         padding: 0,
                         background: colorBgContainer,
                     }}
@@ -103,6 +116,17 @@ const App = () => {
                             height: 64,
                         }}
                     />
+                    <div
+                        style={{
+                            width: 100,
+                            height: 64,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-around'
+                        }}
+                    >
+                        <HeaderAvatar/>
+                    </div>
                 </Header>
 
                 {/* Content */}

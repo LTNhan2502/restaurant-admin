@@ -1,8 +1,8 @@
 import instance from './axios.config.js'
 
-const loginAdmin = (email, password) => {
-    const URL_API = "/v1/api/loginAdmin";
-    const data = { email, password }
+const loginAdmin = (username, password) => {
+    const URL_API = "/auth/login";
+    const data = { username, password }
     return instance.post(URL_API, data);
 }
 

@@ -2,3 +2,8 @@
     padding: 0;
     margin: 0;
 }
+
+.ant-table-tbody > tr > td {
+    height: 100px;
+    vertical-align: middle;
+}
