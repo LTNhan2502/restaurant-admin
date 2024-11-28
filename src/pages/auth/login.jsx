@@ -14,6 +14,7 @@ const LoginPage = () => {
         console.log(">>Check res",res)
         if(res){
             localStorage.setItem("access_token", res.data.data.access_token);
+            localStorage.setItem("refresh_token", res.data.data.refresh_token);
             setAuth({
                 isAuthenticated: true,
                 user: {

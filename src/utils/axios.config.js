@@ -56,14 +56,15 @@ instance.interceptors.response.use(
                 console.log(">> Check API config: ", res);
 
                 // Cập nhật token mới
-                const newAccessToken = res.data.data.access_token;
+                const newAccessToken = res.data.data.accessToken;
+                console.log(">>Check newAccessToken: ", newAccessToken);
                 localStorage.setItem("access_token", newAccessToken);
 
                 // Cập nhật lại header của request bằng token mới
                 originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
                 // Gọi lại API
-                return instance.request(originalRequest);
+                return instance(originalRequest);
             } catch (refreshError) {
                 // Kiểm tra nếu refresh token hết hạn
                 if (refreshError.response?.status === 401) {
